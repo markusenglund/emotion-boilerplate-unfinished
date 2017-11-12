@@ -14,15 +14,27 @@ const { reducer, middleware, enhancer } = routerForBrowser({
 
 const preloadedState = window.PRELOADED_STATE;
 
+delete window.PRELOADED_STATE;
+
 const store = createStore(
   combineReducers({ ...reducers, router: reducer }),
   preloadedState,
   composeWithDevTools(enhancer, applyMiddleware(middleware))
 );
+const render = () => {
+  ReactDOM.hydrate(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById("app")
+  );
+};
 
-ReactDOM.hydrate(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("app")
-);
+render();
+
+// Hot module replacement
+if (process.env.NODE_ENV !== "production" && module.hot) {
+  module.hot.accept("./components/App", () => {
+    render();
+  });
+}

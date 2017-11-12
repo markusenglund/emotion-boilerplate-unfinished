@@ -1,9 +1,14 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: path.join(__dirname, "src/app/client.jsx"),
+  entry: [
+    "webpack-hot-middleware/client",
+    path.join(__dirname, "src/app/client.jsx")
+  ],
   output: {
     path: path.join(__dirname, "dist/public"),
+    publicPath: "/public/",
     filename: "bundle.js"
   },
   module: {
@@ -15,6 +20,10 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ],
   resolve: {
     extensions: [".js", ".jsx"]
   }

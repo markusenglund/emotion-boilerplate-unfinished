@@ -7,6 +7,7 @@ const App = () => (
   <div>
     <Link href="/counter">Counter</Link>
     <Link href="/about">About</Link>
+    <h1>Hej hal</h1>
     <Fragment forRoute="/counter">
       <Counter />
     </Fragment>

@@ -4,7 +4,7 @@ const About = () => (
   <div>
     <h1>About</h1>
     <p>
-      This page is the great. A lot of people come up to me and they tell me,
+      This page is the best. A lot of people come up to me and they tell me,
       this is fantastic page
     </p>
   </div>
