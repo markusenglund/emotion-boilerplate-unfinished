@@ -6,6 +6,7 @@ import { renderToString } from "react-dom/server";
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { routerForExpress } from "redux-little-router";
+import { extractCritical } from "emotion-server";
 import renderHTML from "./renderHTML";
 import routes from "../app/routes";
 import App from "../app/components/App";
@@ -30,7 +31,8 @@ app.get("*", (req, res) => {
       <App />
     </Provider>
   );
-  res.send(renderHTML(appString, store.getState()));
+  const { css, ids } = extractCritical(appString);
+  res.send(renderHTML(appString, css, ids, store.getState()));
 });
 
 const port = process.env.PORT || "1337";

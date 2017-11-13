@@ -1,4 +1,5 @@
 {
-  "presets": ["env", "stage-2", "react"]
+  "presets": ["env", "stage-2", "react"],
+  "plugins": ["emotion"]
   // "env": { "node": { "presets": [["env", { "targets": { "node": "8.9" } }]] } }
 }

@@ -9,8 +9,7 @@
     "serve": "node dist/server",
     "client": "webpack --watch",
     "client:prod": "webpack -p",
-    "analyze-bundle":
-      "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
+    "analyze-bundle": "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
     "format": "prettier --write 'src/**/*.{js,jsx}'",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,10 +18,13 @@
   "license": "MIT",
   "dependencies": {
     "compression": "^1.7.1",
+    "emotion": "^8.0.10",
+    "emotion-server": "^8.0.10",
     "express": "^4.16.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
+    "react-emotion": "^8.0.10",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
@@ -32,6 +34,7 @@
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
     "babel-loader": "^7.1.2",
+    "babel-plugin-emotion": "^8.0.10",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
