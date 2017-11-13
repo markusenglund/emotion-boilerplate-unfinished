@@ -34,7 +34,10 @@ render();
 
 // Hot module replacement
 if (process.env.NODE_ENV !== "production" && module.hot) {
-  module.hot.accept("./components/App", () => {
-    render();
-  });
+  module.hot.accept();
+  // module.hot.accept("./reducers/reducers.js", () => {
+  //   console.log("MODULE HOT AXCCEPTED");
+  //   const newRootReducer = require("./reducers/reducers.js").default;
+  //   store.replaceReducer(newRootReducer);
+  // });
 }
