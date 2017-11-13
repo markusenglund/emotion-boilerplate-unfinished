@@ -4,11 +4,11 @@
   "description": "A reimplementation of the freeCodeCamp beta",
   "main": "dist/server/index.js",
   "scripts": {
-    "dev": "nodemon src/server --exec babel-node",
-    "build:server": "babel src -d dist",
-    "build:client": "webpack -p",
-    "build": "npm run build:server && npm run build:client",
+    "start": "nodemon src/server/server.jsx --exec babel-node",
+    "build": "babel src -d dist",
     "serve": "node dist/server",
+    "client": "webpack --watch",
+    "client:prod": "webpack -p",
     "analyze-bundle":
       "webpack -p --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/public -s gzip",
     "lint": "eslint --ext .js,.jsx src/",
@@ -44,8 +44,6 @@
     "nodemon": "^1.12.1",
     "prettier": "^1.8.2",
     "webpack": "^3.8.1",
-    "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-dev-middleware": "^1.12.0",
-    "webpack-hot-middleware": "^2.20.0"
+    "webpack-bundle-analyzer": "^2.9.1"
   }
 }

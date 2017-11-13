@@ -4,16 +4,15 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { routerForBrowser } from "redux-little-router";
 import { composeWithDevTools } from "redux-devtools-extension";
-import reducers from "./reducers/reducers";
-import App from "./components/App";
-import routes from "./routes";
+import reducers from "./app/reducers/reducers";
+import App from "./app/components/App";
+import routes from "./app/routes";
 
 const { reducer, middleware, enhancer } = routerForBrowser({
   routes
 });
 
 const preloadedState = window.PRELOADED_STATE;
-
 delete window.PRELOADED_STATE;
 
 const store = createStore(
@@ -21,23 +20,10 @@ const store = createStore(
   preloadedState,
   composeWithDevTools(enhancer, applyMiddleware(middleware))
 );
-const render = () => {
-  ReactDOM.hydrate(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById("app")
-  );
-};
 
-render();
-
-// Hot module replacement
-if (process.env.NODE_ENV !== "production" && module.hot) {
-  module.hot.accept();
-  // module.hot.accept("./reducers/reducers.js", () => {
-  //   console.log("MODULE HOT AXCCEPTED");
-  //   const newRootReducer = require("./reducers/reducers.js").default;
-  //   store.replaceReducer(newRootReducer);
-  // });
-}
+ReactDOM.hydrate(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("app")
+);
